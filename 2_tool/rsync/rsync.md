@@ -1,0 +1,1 @@
+rsync -avz -e "ssh -p 22" -rt $file root@$ip:$path

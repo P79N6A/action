@@ -1,0 +1,14 @@
+def dump_string
+	echo dump string \n
+	ptype $arg0
+	set $p = (char*)&$arg0
+	ptype $p
+	while(*$p != '\0')
+		p $p
+		p *$p
+		set $p=$p+1
+	end
+end
+b main.cpp:11
+r
+dump_string b

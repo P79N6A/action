@@ -1,0 +1,81 @@
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<h2>查看帮助</h2>
+
+<p>git -h</p>
+
+<p>git --help</p>
+
+<h2>创建代码目录</h2>
+
+<p>git clone https://user:password@url [local<em>dir</em>name]</p>
+
+<h2>更新代码</h2>
+
+<p>git pull</p>
+
+<p>git pull origin master:master</p>
+
+<h2>推送代码</h2>
+
+<p>git push origin master:master</p>
+
+<p>git push origin branch1:branch2</p>
+
+<h2>分支处理</h2>
+
+<p>git branch -a   查看所有分支</p>
+
+<p>git branch -b branch1   创建branch1分支</p>
+
+<p>git push origin branch1 把branch1分支推送到远端</p>
+
+<p>git checkout branch1    切到分支branch1</p>
+
+<p>git branch -d brranch1  删除本地branch1分支</p>
+
+<p>git push --delete origin branch1    删除远程branch1分支</p>
+
+<p>git push origin :branch1    删除远程branch1分支</p>
+
+<h2>git标签</h2>
+
+<p>git tag -l 列出所有tag
+git tag -a tagname  为当前代码添加标签
+git push origin tagname 把tag推送到远程
+git push --delete tagname   删除远程标签</p>
+
+<h2>代码回滚或放弃更改</h2>
+
+<p>git reset --hard origin/master把当前branch reset成与远程origin的master一样</p>
+
+<p>git reset --hard commit-id  回滚到commit-id，即放弃commit-id之后的提交</p>
+
+<p>git reset --hard HEAD~3     将最近3次提交回滚</p>
+
+<p>git checkout master file.txt 放弃文件file.txt的本地更改，使用当前master中相对应的文件</p>
+
+<p>git checkout HEAD -- file.txt 放弃文件file.txt的本地更改，使用HEAD中相对应的文件；（-- basically means: treat every argument after this point as a file name）</p>
+
+<h2>查看版本差异</h2>
+
+<p>git diff 查看当前编辑未提交的文件</p>
+
+<p>git diff filename 查看特定文件更新</p>
+
+<p>git diff –cached  查看已经暂存起来的文件和上次提交的版本之间的差异</p>
+
+<p>git diff –cached filename 查看已经暂存起来的某个文件和上次提交的版本之间的差异</p>
+
+<p>git diff version1 version2 查看某两个版本之间的差异</p>
+
+<p>git diff tag1:filename tag2:filename 查看某两个版本的某个文件之间的差异</p>
+
+<p>git diff tagA:./dir1/dir2 tagB:./dir1/dir2 查看某两个版本从当前目录开始某个文件夹的差异</p>
+
+<p>git diff orgin/master:dir1/file dir1/file   对比远程仓库中文件file与本地文件file之间的差异</p>
+
+<h2>参考链接：</h2>
+
+<p><a href="http://rogerdudler.github.io/git-guide/index.zh.html">http://rogerdudler.github.io/git-guide/index.zh.html</a></p>
+
+<p><a href="https://git-scm.com/">https://git-scm.com/</a></p>

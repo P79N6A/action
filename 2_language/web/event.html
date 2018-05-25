@@ -1,0 +1,35 @@
+<html>
+</html>
+<head>
+	<meta charset='utf-8'></meta>
+	<style type='text/css'>
+	p{height:10vh;border:1px dashed green;}
+	div{border:1px dotted blue}
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+		document.getElementsByTagName("a")[0].addEventListener("click",function(){
+				alert("a");
+			});
+		document.getElementsByTagName("p")[0].addEventListener("click",function(){
+				alert("p");
+			});
+		document.getElementsByTagName("li")[0].addEventListener("click",function(){
+				alert("li");
+			});
+		document.getElementsByTagName("ul")[0].addEventListener("click",function(){
+				alert("ul");
+			});
+		
+	}
+	
+	</script>
+</head>
+<body>
+<img src="event.jpg" alt="事件模型图"/>
+<ul>
+	<li>
+		<p><a>touch me</a></p>
+	</li>
+</ul>
+</body>

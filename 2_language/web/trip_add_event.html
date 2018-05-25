@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta charset='utf8'></meta>
+<script type="text/javascript">
+function fun()
+{
+	alert(fun);
+}
+document.getElementById("p1").onfocus=fun();
+document.getElementById("p2").onfocus=fun;
+document.getElementById("p3").onfocus="fun()";
+</script>
+</head>
+<body>
+<pre>
+function fun()
+{
+	alert(fun);
+}
+document.getElementById("p1").onfocus=fun();
+document.getElementById("p2").onfocus=fun;
+document.getElementById("p3").onfocus="fun()";
+</pre>
+<p>这三种javascript写法均没有语法错误,但是意义不一样，误写很容易埋下坑</p>
+<p id="p1">第一种是把fun()函数返回的函数对象作为onfocus回调</p>
+<p id="p2">第二种把fun作为回调</p>
+<p id="p3">第三种同第二种</p>
+</body>
+</html>

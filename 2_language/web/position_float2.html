@@ -1,0 +1,25 @@
+<html>
+<head>
+<meta charset='utf-8'></meta>
+<style type="text/css">
+p{height:10vh;border:1px dashed green;}
+#div1{width:30%;height:15vh;border:1px solid red;display inline-block;float:left;}
+#div2{width:200px;height:15vh;border:1px solid red;display inline-block;float:right;}
+#div3{width:50%;height:15vh;border:1px solid red;display inline-block;float:right;}
+a{border:1px dashed blue;}
+#div4{width:30%;height:10vh;border:1px solid red;display inline-block;float:left;}
+</style>
+</head>
+<body>
+<p>line1</p>
+<p>line2</p>
+<p>line3</p>
+<div id="div1">div1---float:left，它并不影响前面已有的块级元素</div>
+<div id="div2">div2---float:right,它不影响前面的块级元素</div>
+<div id="div3">div3---float:right,按顺序先把div2排在了最右边，再依次排列div3</div>
+<p>line4   后面新加地块级元素的左右两边的位置被float的元素侵占,后面新加地块级元素或内联元素只能见缝插针</p>
+<p>line5   新加一个元素直到很满 内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+<a>行内元素1</a><a>行内元素2</a><a>行内元素3</a><a>行内元素4</a>
+<div id="div4">div4--float:left,行内元素被挤到了右边</div>
+</body>
+</html>

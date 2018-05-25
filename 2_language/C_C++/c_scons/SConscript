@@ -1,0 +1,53 @@
+#Import("env")
+import glob
+import os
+import commands
+import sys
+print "---------------------------zhubo_lib"
+
+#sys.exit(0)
+env=Environment();
+env.Append(CCFLAGS='-g -O2 -Werror -fPIC')
+env.Append(LINKFLAGS='-static-libgcc ')
+#env.Append(LINKFLAGS='--whole-archive 	\
+#						-L /usr/local/lib \
+#						-lmysqlclient 	\
+#						--no-whole-archive');
+#sys.exit(0);
+#use ar to combine or continue test whole-archive to combine .a
+
+env.StaticLibrary(
+#env.Program(
+	target="lib/lib_name",
+	source=[
+		Glob("src/*.c"),
+		Glob("src/*.cpp"),
+		Glob("test/*.cpp"),
+		Glob("../path1/*.o"),
+		Glob('../path2/*.o'),
+		Glob('../../common/*.cpp'),
+	],
+	CPPPATH=[
+		'headerpath0',
+		'headerpath1',
+	],
+	LIBPATH=[
+		'../libpath1',
+		'libpath2',
+	],
+#	LIBS=Split('dl mysqlclient')
+);
+env.Program(
+	target="test/test_prog",
+	source=[
+		Glob("test/*.cpp"),
+	],
+	CPPPATH=[
+		'header_path',
+	],
+	LIBPATH=[
+		'lib'
+	],
+	LIBS=Split('lib_name otherlib')
+);
+

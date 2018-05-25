@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>orientation and device detection in css3</title>
+
+    <link rel="stylesheet" media="all and (max-device-width: 480px) and (orientation:portrait)" href="iphone-portrait.css" />
+    <link rel="stylesheet" media="all and (max-device-width: 480px) and (orientation:landscape)" href="iphone-landscape.css" />
+    <link rel="stylesheet" media="all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait)" href="ipad-portrait.css" />
+    <link rel="stylesheet" media="all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape)" href="ipad-landscape.css" />
+    <link rel="stylesheet" media="all and (device-width: 800px) and (device-height: 1184px) and (orientation:portrait)" href="htcdesire-portrait.css" />
+    <link rel="stylesheet" media="all and (device-width: 800px) and (device-height: 390px) and (orientation:landscape)" href="htcdesire-landscape.css" />
+    <link rel="stylesheet" media="all and (min-device-width: 1025px)" href="desktop.css" />
+
+</head>
+<body>
+    <div id="iphonelandscape">iphone landscape</div>
+    <div id="iphoneportrait">iphone portrait</div>
+    <div id="ipadlandscape">ipad landscape</div>
+    <div id="ipadportrait">ipad portrait</div>
+    <div id="htcdesirelandscape">htc desire landscape</div>
+    <div id="htcdesireportrait">htc desire portrait</div>
+    <div id="desktop">desktop</div>
+    <script type="text/javascript">
+        function res() { document.write(screen.width + ', ' + screen.height); }
+        res();
+    </script>
+</body>
+</html>

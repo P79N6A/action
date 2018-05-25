@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!-- <meta charset="utf-8"/> -->
+<html>
+	<head>
+		<script type="text/javascript" src="highcharts/jquery-1.11.3.min.js"></script>
+	    <script type="text/javascript" src="highcharts/js/highcharts.js"></script>
+	    <script type="text/javascript" src="highcharts/js/modules/exporting.js"></script>
+
+	    <script>
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function figure(html_id,chart_type,chart_title,yAxis_title,series_name_1,series_name_2) {                                                                     
+    $(document).ready(function() {                                                  
+        Highcharts.setOptions({                                                     
+            global: {                                                               
+                useUTC: false                                                       
+            }                                                                       
+        });                                                                         
+                                                                                    
+        var chart;                                                                  
+        $(html_id).highcharts({                                                
+            chart: {                                                                
+                type: chart_type,                                                     
+                animation: Highcharts.svg, // don't animate in old IE               
+                marginRight: 10,                                                    
+                events: {                                                          
+//                    load: function() {                                              
+//                                                                                    
+//                        // set up the updating of the chart each second             
+//                        var series1 = this.series[0];  
+//                        var series2 = this.series[1];                                
+//                        setInterval(function() {
+//							if(1)
+//							{
+//								var x1 = (new Date()).getTime(), // current time         
+//									y1 = Math.random();                                  
+//								series1.addPoint([x1, y1], true, true);   
+////								var x2 = (new Date()).getTime(), // current time         
+////									y2 = Math.random();                                  
+//								series2.addPoint([x1, y1], true, true);       
+//							}
+//                        }, 1000);                                                  
+//                    }                                                         
+                    load: function() {                                              
+                                                                                    
+                        // set up the updating of the chart each second             
+                        var series1 = this.series[0];  
+                        setInterval(function() {  
+								if(has_new_data())
+									{
+										var x=(new Date()).getTime(), 
+										    y=get_msg_data(html_id,1)
+		//                                y = Math.random();                                  
+										series1.addPoint([x, y], true, true);
+									}
+                        }, 100);
+						var series2=this.series[1];
+						setInterval(function(){
+								if(has_new_data())
+								{
+									var x=(new Date()).getTime(),
+										y=get_msg_data(html_id,2)
+									series2.addPoint([x,y],true,true);
+							}
+						},100);
+                    }                                                               
+                }                                                                   
+            },                                                                      
+            title: {                                                                
+                text: chart_title                                           
+            },                                                                      
+            xAxis: {                                                                
+                type: 'datetime',                                                   
+                tickPixelInterval: 150                                              
+            },                                                                      
+            yAxis: {   
+				labels:{
+					align:'right'
+				},
+                title: {                                                            
+                    text: yAxis_title                                                   
+                }, 
+				min:0,
+                plotLines: [{                                                       
+                    value: 0,                                                       
+                    width: 1,                                                       
+                    color: '#808080'                                                
+                }]                                                                  
+            },                                                                      
+            tooltip: {                                                              
+                formatter: function() {                                             
+                        return '<b>'+ this.series.name +'</b><br/>'+                
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
+                        Highcharts.numberFormat(this.y, 0);                         
+                }                                                                   
+            },                                                                      
+            legend: {                                                               
+                enabled: false                                                      
+            },                                                                      
+            exporting: {                                                            
+                enabled: false                                                      
+            },                                                                      
+            series: [{                                                              
+                name: series_name_1,                                                
+                data: (function() {                                                 
+                    // generate an array of random data                             
+                    var data = [],                                                  
+                        time = (new Date()).getTime(),                              
+                        i;                                                          
+                                                                                    
+                    for (i = -19; i <= 0; i++) {                                    
+                        data.push({                                                 
+                            x: time + i * 1000,                                     
+//                            y: Math.random()   
+							y:0
+                        });                                                         
+                    }                                                               
+                    return data;                                                    
+                })()                                                                
+            },{                                                              
+                name: series_name_2,                                                
+                data: (function() {                                                 
+                    // generate an array of random data                             
+                    var data = [],                                                  
+                        time = (new Date()).getTime(),                              
+                        i;                                                          
+                                                                                    
+                    for (i = -19; i <= 0; i++) {                                    
+                        data.push({                                                 
+                            x: time + i * 1000,                                     
+//                            y: Math.random()   
+							y:0
+                        });                                                         
+                    }                                                               
+                    return data;                                                    
+                })()                                                                
+            }]                                                                      
+        });                                                                         
+    });                                                                             
+                                                                                    
+};         
+	    </script>
+
+	</head>
+	<body>
+		<div id="send_recv_speed" style="min-width:700px;height:400px"></div>
+		<div id="send_recv_num" style="min-width:700px;height:400px"></div>
+		<div id="output"></div>
+			<form name="myform">
+				<p id="p1_id" name="p1_name">
+					<textarea name="textShow" rows="20" cols="50"></textarea>
+				</p>
+			</form>
+	</body>
+
+</html>
+<script language="javascript" type="text/javascript">
+
+function onOpen(evt)
+{
+	writeToScreen("connected\n");
+	writeToScreen(evt.data);
+}
+function onClose(evt)
+{
+	writeToScreen("disconnected\n");
+	writeToScreen(evt.data);
+}
+
+MSG=new Object();
+
+NEW_DATA_COMES=0;
+function onMessage(evt)
+{
+	writeToScreen("data received:"+evt.data+"\n");
+//	json='{"recv_speed":10,"send_speed":1}',obj=JSON.parse(json)
+	MSG=JSON.parse(evt.data);
+//	MSG.RECV_SPEED=Number(obj.recv_speed);
+//	MSG.SEND_SPEED=Number(obj.send_speed);
+//	MSG.RECV_NUM=Number(obj.recv_num);
+//	MSG.SEND_NUM=Number(obj.send_num);
+	NEW_DATA_COMES=4;
+
+//	var load_fun=$("#send_recv_speed").highcharts().get('load')
+//	load_fun()
+}
+function onError(evt)
+{
+	writeToScreen("Error occurred:"+evt.data+"\n");
+}
+
+function writeToScreen(txt)
+{
+	document.myform.textShow.value=txt;
+}
+
+function init()
+{
+	document.url="ws:127.0.0.1:1507";
+
+	document.myform.textShow.value="Now is empty";
+}
+function doConnect()
+{
+	websocket=new WebSocket(document.url);
+	websocket.onopen=onOpen;
+	websocket.onclose=onClose;
+	websocket.onmessage=onMessage;
+	websocket.onerror=onError;
+}
+function disConnect()
+{
+	websocket.close();
+}
+function send(message)
+{
+	websocket.send(message);
+}
+init();
+doConnect();
+
+function has_new_data()
+{
+	if(NEW_DATA_COMES>0)
+	{
+		NEW_DATA_COMES-=1;
+		return NEW_DATA_COMES+1;
+	}
+	else
+	{
+		return NEW_DATA_COMES;
+	}
+}
+function get_msg_data(html_id,flag)
+{
+	if(html_id=='#send_recv_speed')
+	{
+		if(flag==1){return MSG.recv_speed;}
+		else if(flag==2){return MSG.send_speed;}
+	}
+	if(html_id=='#send_recv_num')
+	{
+		if(flag==1) return MSG.recv_num;
+		else if(flag==2) return MSG.send_num;
+	}
+	else
+	{
+		return 0;
+	}
+}
+//function get_recv_speed()
+//{
+//	return RECV_SPEED;
+//}
+//function get_send_speed()
+//{
+//	return SEND_SPEED;
+//}
+//figure('#send_recv_speed','spline','收发速度统计','收发字节数','收包','发包',get_recv_speed,get_send_speed);
+figure('#send_recv_speed','spline','收发速度统计','收发字节数','收包','发包');
+figure('#send_recv_num','spline','收发包数统计','收发包数','收包','发包');
+//figure('#container2','spline','包数统计');
+//alert(document.url);
+</script>
+
+

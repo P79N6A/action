@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+	<script type="text/javascript">
+		window.onload=function()
+		{
+			var content={
+				"concentrate":"do",
+				"one":"thing"
+			};
+			var cp=window.JSON.stringify(content);
+			console.log(cp);
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+			  {// code for IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp=new XMLHttpRequest();
+			  }
+			else
+			  {// code for IE6, IE5
+			  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			  }
+			  xmlhttp.onreadystatechange=function()
+				  {
+				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+					document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+					alert(xmlhttp.responseText);
+					alert(bingo);
+					}
+				  }
+			 <!-- alert(typeof xmlhttp); -->
+			 xmlhttp.open("POST","work.php",true);
+			 xmlhttp.send(cp);
+		}
+	</script>
+</head>
+<body>
+	<p>concentrate on one thing</p>
+	<div id="myDiv"><h3>Let AJAX change this text</h3></div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+note that
+1.when pokedata, 'void*data' should not be a address of a value, but the value directly.
+2.for 'void*addr', addr must be type-cast by (void*)addr
+3.must wait a little time after attach or will receive errno=3 which means no process can be found; use 'waitpid'
+4.PTRACE_PEEKDATA's success should be judged by errno, for the return value can be -1

@@ -1,0 +1,18 @@
+<html>  
+<head>
+<style type="text/css">  
+    html{border:1px dashed green;}  
+    body{border:1px dashed  purple;height:100%;}  
+    #first{ width: 100%;height: 10%;border: 1px solid red;position: fixed;}  
+    #second{ width: 100%;height: 100%;border: 1px solid blue;position: relative;margin-top:10vh;}  
+</style>  
+</head>
+<body>  
+  <div id="first">fixed</div>  
+  <div id="second">relative</div>  
+  <p>
+margin-top如果使用n%，百分比是按宽度的百分比来算的，故看高度得到的会是一个不正确的值。
+解决办法：利用css3的vh特性，1vh相当于1%视窗高度；1vw相当于1%视窗宽度
+  </p>
+</body>  
+</html>  

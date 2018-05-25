@@ -1,0 +1,25 @@
+#!/usr/bin/expect
+set host [lindex $argv 0]
+set password [lindex $argv 1]
+set file_name [lindex $argv 2]
+set path [lindex $argv 3]
+spawn echo "host:$host"
+spawn echo "password:$password"
+spawn echo "file_name:$file_name"
+spawn echo "path:$path"
+set timeout 10000000
+spawn rsync -rt ./files/$file_name root@$host:$path  
+expect {
+	"*assword:" {
+		send "$password\r"
+		exp_continue
+	}
+	"(yes/no)" {
+		send "yes\r"
+		exp_continue
+	}
+	"100%" {
+	}
+}
+spawn echo "------------------------------send file done"
+expect eof

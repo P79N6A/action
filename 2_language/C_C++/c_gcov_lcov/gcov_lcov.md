@@ -1,0 +1,42 @@
+
+一、编译
+--------------------------------------------------
+添加编译选项	-g -fprofile-arcs -ftest-coverage
+
+添加链接选项	-lgcov --coverage
+
+编译完，每个源文件会生成*.gcno文件；
+
+>**注意**
+* 编译脚本的不同可能导致生成的gcno和gcda与源文件不在同一个目录;测试用scons构建工具生成的*.gcda与源文件是同一个目录，Makefile随脚本编写的不同而不同。
+* 不在同一个目录其实没有关系，每个gcda文件里面已经存储有源文件目录信息，lcov可仍然可以找到相对应的源设施，并进行统计；
+
+二、运行程序，每一个源文件都会对应生成一个*.gcda文件；
+--------------------------------------------------
+```
+gcov -b any_file.cpp	该命令行可查看文件any_file.cpp的代码覆盖情况
+```
+>**注意**
+* 程序必须行完才会生成\*.gcda文件；异常退出的程序不会生成\*.gcda文件；对daemon进程的测试可以通过发送一个usr1信号，并调用exit(0)正常退出后生成\*.gcda文件；
+* 如果程序运行的机器与源码不在同一台机器上，那么运行程序的机器会产生一个与源程序所在机器相同的工程路径来生成\*gcda文件；可以把生成的\*gcda文件拷贝到源代码器上再用lcov来分析。
+
+三、通过lcov生成info总结文件
+--------------------------------------------------
+	lcov --capture --directory . -b . --output-file result.info 
+	--directory     指定gcda的路径，因为gcov在编译时可以指定gcda统一存放地址，所以这里需要一个特定选项指定目录
+	-b			    指定源文件路径；可以是工程根目录，也可以是工程根目录再上一次的目录；
+	--output-file	指定生成文件名；
+
+该命令可以直接通过-d指定工程根目录，lcov会自动递归寻找gcda文件：
+
+四、通过genhtml生成html可视化文件：
+--------------------------------------------------
+	genhtml result.info --output-directory output --title "a simple test" --show-details --legend
+	genhtml result.info --output-directory output --show-details --legend
+	genhtml result.info --output-directory output
+
+在linux使用如下命令运行[DEMO](../explore/gcov_lcov)
+```
+make
+make run
+```

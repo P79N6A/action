@@ -1,0 +1,15 @@
+{
+        "bind_url":"null",
+        "dst_url":"v_dst_url",
+        "roomid":v_roomid,
+        "roomkey":v_roomkey,
+        "memberid":v_memberid,
+        "data_step":100000,
+        "data_num":1000,
+        "send_cod":0,
+        "codx":0,
+        "cody":0,
+        "codz":0,
+        "codr":0,
+        "sleep_time":5
+}

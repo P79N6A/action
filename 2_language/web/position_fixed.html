@@ -1,0 +1,26 @@
+<html>
+</html>
+<head>
+	<meta charset='utf-8'></meta>
+	<style type='text/css'>
+	#fixed_d1{position:fixed;top:300px;left:300px;z-index:10;border:1px solid red;}
+	p{width:300px;height:100px;border:1px dashed green;}
+	#fixed_d2{position:fixed;margin auto;border:1px solid red;}
+	#fixed_d3{position:fixed;left:50%;top:50vh;border:1px solid red;}
+	#fixed_d4{position:fixed;left:200px;top:70vh;width:60px;height:30vh;border:1px solid red;}
+	#fixed_d5{position:fixed;left:50%;top:0;width:50vw;height:30vh;border:1px solid purple;}
+	</style>
+</head>
+<body>
+	<div id='fixed_d1'>相对于窗口左上角点（300px,300px）炫染，该元素会脱离文档流，其它元素仍然按文档流模式排列</div>
+	<p>line1</p>
+	<p>line2</p>
+	<p>line3</p>
+	<div id='fixed_d2'>测试使用margin auto，浏览器并不知道该元素在哪里，仍然按正常文档流排行该元素</div>
+	<div id='fixed_d3'>测试使用百分比来固定位置，可以正常在按百分比的位置显示</div>
+	<div id='fixed_d4'>测试固定fixed元素的宽度和高度</div>
+	<div id='fixed_d5'>测试在fixed元素中按正常流档流排列其它元素
+	<p>css的语法一定要正确，否则后面的均不会解析，比如写在"width 30","width=30"等这样均会导致css属性设置失效</p>
+	<p>div内部的元素仍然会相对于父元素以文档流存在</p>
+	</div>
+</body>

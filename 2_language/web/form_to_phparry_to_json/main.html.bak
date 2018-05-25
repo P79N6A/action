@@ -1,0 +1,13 @@
+<form enctype='application/json' method='post' action='work.php'>
+  <input name='places[0][city]' value='New York City'>
+  <input type='number' name='places[0][population]' value='8175133'>
+  <input name='places[1][city]' value='Los Angeles'>
+  <input type='number' name='places[1][population]' value='3792621'>
+  <input name='places[2][city]' value='Chicago'>
+  <input type='number' name='places[2][population]' value='2695598'>
+  <input type='submit'	value='submit'>
+</form>
+<form enctype='application/json' method='post' action='work.php'>
+  <input name='111' value='222'>
+  <input type='submit'	value='submit'>
+</form>

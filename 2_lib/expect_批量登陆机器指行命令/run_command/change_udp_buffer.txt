@@ -1,0 +1,5 @@
+sysctl -w net.core.wmem_max=25165824;
+sysctl -w net.core.rmem_max=25165824;
+sysctl -w net.core.rmem_default=25165824;
+sysctl -w net.core.wmem_default=25165824;
+sysctl -w net.core.optmem_max=25165824;

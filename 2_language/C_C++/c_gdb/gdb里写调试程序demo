@@ -1,0 +1,21 @@
+def ctest
+printf "source gdb file, yes"
+end
+
+#def cf
+#set $l=&_task_unused._leader
+#set $l=$l->next
+#set $c=0  
+#while($l->pObject!=0 )
+#set $l=$l->next	
+#set $c=$c+1
+#if($c%100==0)
+#printf "%d\n",$c
+#end
+#if($l==0x7f1ec889c008)
+#printf "yes\n"
+#end
+#end
+#printf "%d\n",$c
+#end
+#end

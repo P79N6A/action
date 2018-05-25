@@ -1,0 +1,71 @@
+<html>
+	<head>
+		think the main <br/>
+		<script>
+			function init()
+			{
+				var ctx=document.getElementById("myCanvas").getContext("2d");
+				ctx.beginPath();
+				ctx.arc(200,200,100,0,Math.PI*2,false);
+				ctx.stroke();
+			}
+			function omd()
+			{
+				<!-- console.log("down"); -->
+				<!-- alert("down"); -->
+				var pos=document.getElementById("pos");
+				pos.innerHTML="mouse is down:";
+				<!-- pos.value="happy"; -->
+			}
+			function omu()
+			{
+				var pos=document.getElementById("pos");
+				pos.innerHTML="mouse is up!";
+			}
+			function omm(ev)
+			{
+				var pos=document.getElementById("pagepos");
+				var x=ev.pageX;
+				var y=ev.pageY;
+				pos.innerHTML="pageX:"+String(x)+" pageY:"+String(y);
+				pos=document.getElementById("clientpos");
+				x=ev.clientX;
+				y=ev.clientY;
+				pos.innerHTML="clientX:"+String(x)+" clientY:"+String(y);
+				pos=document.getElementById("offsetpos");
+				x=ev.offsetX;
+				y=ev.offsetY;
+				pos.innerHTML="offsetX:"+String(x)+" offsetY:"+String(y);
+			}
+		</script>
+		<style>
+		input:valid {background:green}
+		input:invalid{background:red}
+		</style>
+	</head>
+	<body onload="init();">
+		input <input type="number" min="0" max="10"/>
+		<canvas id="myCanvas" name="can" width="400" height="400"
+			onmousedown="omd();"
+			onmouseup="omu();"
+			onmousemove="omm(event);">
+			your explorer doesn't support HTML5
+		</canvas>
+		<br/>
+		<p id="pagepos">mouse is up</p>
+		<p id="clientpos">mouse is up</p>
+		<p id="offsetpos">mouse is up</p>
+		<canvas id="myCanvas1" name="can" width="4000" height="4000"
+			onmousedown="omd();"
+			onmouseup="omu();"
+			onmousemove="omm(event);">
+			your explorer doesn't support HTML5
+		</canvas>
+	</body>
+</html>
+
+
+
+
+
+

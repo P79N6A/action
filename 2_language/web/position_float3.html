@@ -1,0 +1,27 @@
+<html>
+<head>
+<meta charset='utf-8'></meta>
+<style type="text/css">
+p{height:10vh;border:1px dashed green;}
+div{border:1px dotted blue}
+#d1{width:50%;height:100px;margin-left:25%;}
+#d2{width:25%;height:100px;float:left;margin-left:-100}
+#np1{top:50vh}
+#d5{width:100%;top:20vh;left:0;position:relative;}
+#d3{width:50%;height:100px;margin-left:25%;margin-right:25%;float:left;}
+#d4{width:10%;height:100px;float:left;margin-left:-90%;}
+#d6{width:10%;height:100px;float:left;margin-left:10%;}
+</style>
+</head>
+<body>
+<p>line1 普通文本流</p>
+<div id="d1">margin-left:25%</div>
+<div id="d2">float:left 这个div并不会插到前面元素的margin里面，margin虽然在border外但属于元素的一部分</div>
+<p id='np1'>这里指定top:50vh是没有用的，默认static定位的元素仍然会按文档流从上往下排，即挤到floast元素的中间去</p>
+<div id='d5'>d5:使用position的relative跨过上面的float，固定新测试框子位置,不然新的流式会挤到上面中间去（也可以使用fixed绝对固定）,这里的边界并没有把子元素包含在内，但从实际情况来看它是发挥作用的，因为d4并没有跑到上面去；
+	<div id="d3">d5的子元素margin-left:25% float:left，它只在d5的里面float，不会再与上面的float框排到一起	</div>
+	<div id="d4">d5的子元素d4,margin-left:-90%,margin为负时，它会沿父元素第一行排列，与之前的float元素重叠</div>
+	<div id="d6">d5的子元素d6,margin-left:10%</div>
+</div>
+</body>
+</html>

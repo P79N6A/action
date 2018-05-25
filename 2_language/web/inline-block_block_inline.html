@@ -1,0 +1,65 @@
+
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #inline p{
+            display: inline;
+            background-color:red ;
+            width:300px;/*这里设置无用*/
+        }
+        #inline-block p{
+            display: inline-block;
+            background-color:red ;
+            width:100px;
+            padding:10px;
+        }
+        #block p{
+            display: block;
+            background-color: red;
+            width:100px;
+            padding:20px;
+        }
+        div{
+            margin:20px;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+<a href="http://www.cnblogs.com/hy-sunny/p/5602236.html">原文</a>
+<h1>块级元素</h1>
+
+<p>会占领页面的一行，其后多个block元素自动换行、 可以设置width，height，设置了width后同样也占领一行、同样也可以设置   margin与padding属性。</p>
+
+<p>ps:常见的块级元素:div,img,ul,form,p等</p>
+
+<h1>行级元素</h1>
+
+<p>与其他元素在同一行上，高度，行高以及底边距不可改变，高度就是内容文字或者图片的宽度，不可以改变。</p>
+
+<p>ps：em，strong，br,input等</p>
+
+<h1>display:inline-block，block，inline元素的区别</h1>
+
+<p>1、display：block将元素显示为块级元素，从而可以更好地操控元素的宽高，以及内外边距，每一个块级元素都是从新的一行开始。</p>
+
+<p>2、display : inline将元素显示为行内元素，高度，行高以及底边距不可改变，高度就是内容文字或者图片的宽度，不可以改变。多个相邻的行内元素排在同一行里，知道页面一行排列不下，才会换新的一行。</p>
+
+<p>3、display：inline-block看上去值名inline-block是一个混合产物，实际上确是如此，将元素显示为行内块状元素，设置该属性后，其他的行内块级元素会排列在同一行。比如我们li元素一个inline-block，使其既有block的宽度高度特性，又有inline的同行特性，在同一行内有不同高度内容的元素时，通常要设置对齐方式如vertical-align: top;来使元素顶部对齐。</p>
+
+<hr/>
+     <div id="inline">
+        display:inline 在同一行，并且宽度就等于文字内容的宽度且设置宽度无用<p>内容内容内容内容内容内容内容</p>内容内容内容内容内容内容
+     </div>
+     <div id="inline-block">
+        display:inline-block  既有行级元素的特性，也有块级元素的特性，因此在同一行，能设置宽高，margin，padding<p>内容内容内容内容内容内容内容</p>内容内容内容内容内容内容
+     </div>
+     <div id="block">
+        display:block 块级元素会自动换新行，占领一行,可以设置宽高，margin，padding <p>内容内容内容内容内容内容内容</p>内容内容内容内容内容内容
+     </div>
+</body>
+</html>
