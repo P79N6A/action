@@ -1,0 +1,21 @@
+#!/usr/bin/expect
+set host [lindex $argv 0]
+set password [lindex $argv 1]
+spawn echo "host:$host"
+spawn echo "password:$password"
+set timeout 10000000
+spawn ssh -p 36000 root@$host 
+expect {
+        "*assword:" {
+                send "$password\r"
+                exp_continue
+        }
+        "(yes/no)" {
+                send "yes\r"
+                exp_continue
+        }
+        "#" { 
+                interact
+        }
+}
+#expect eof
