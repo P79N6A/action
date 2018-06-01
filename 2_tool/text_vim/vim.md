@@ -105,8 +105,31 @@ vim
 多窗口编辑
 ----------------------------
 	vim -O file1 file2 ...	垂直排列打开文件
+	vim -o file1 file2 ...	水平排列打开文件
+	Ctrl + w s	上下分割当前打开的文件
+	:sp filename	上下分割，并打开一个新的文件
+	Ctrl + w v	左右分割
+	:vsp filename	左右分割，并打开一个新文件
 	CTRL-W h,j,k,l,t,b	窗口间跳转
 	CTRL-W H,J,K,L,T,B	把窗口移动到相应方向最远处
+	Ctrl+w +	增加高度
+	Ctrl+w -	减少高度
+	Ctrl+w <	宽度
+	Ctrl+w >	宽度
+	:E	浏览目录
+	:cd <dir>可以改变当前工作目录
+	pwd查看当前目录
+	
+:Te全称是:Texplorer
+----------------------------
+	gt到下一页
+	gT到前一页
+	$num gt到第 num 页
+	:tabs	查看tab页列表
+	:tabclose $num	如果指定了num，则关闭指定页，否则关闭当前页
+	:q	关闭当前页
+	vim -p file1 file2 ...	打开时直接分页
+	:bufdo tab split	把当前buffer中的文件全部转成tab显示
 
 打开或关闭文件
 ----------------------------
