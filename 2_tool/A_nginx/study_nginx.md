@@ -24,3 +24,19 @@ nginx安装
 
     ![welcome_nginx.PNG](./image/welcome_nginx.PNG "")
 - 安装结束
+
+
+
+
+配置demo
+=====================================
+所有配置正则表达式\.php的请求url均会使用如下配置信息
+---------------------------------------------------------
+    location ~ \.php$ {
+        root           /data/running/web_html;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        #fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+    } 
