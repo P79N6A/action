@@ -38,3 +38,4 @@ protobuf
 特别注意的地方
 ---------------------
 * 如果强制把一个int赋值给一个枚举值，如果不在枚举值范围内，在pb2中会引发runtime crash；
+* 一个结构体内的某个required变量没有赋值，仍然可以序列化成功并发送，但是接收端会出现parse error;发送端可以调用IsInitlized()来判断所有required是否都填了；
