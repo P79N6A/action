@@ -30,6 +30,11 @@ less,greater关键字是按去除MAC头后从IP头开始算的长度（即如对
 
 组合条件
 ----------------------------
+非 : ! or “not” (去掉双引号)
+且 : && or “and”
+或 : || or “or”
 如果抓包条件是and or 等混合的条件是用小括号（）括起来，并且所有条件要加单引号或双引号，如
 tcpdump -i any 'udp host 127.0.0.1 and (port 10001 or port 10002))'
 tcpdump -i any "(port 80 or port 443) and ((host 172.17.30.100 or host 172.17.30.101 or host 172.17.30.102) and ((host 172.17.31.200 or host 172.17.31.201 or host 172.17.31.202))"
+tcpdump host ip1 and (ip2 or ip3)
+tcpdump host ip1 and !ip2
