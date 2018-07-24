@@ -25,6 +25,7 @@ sed
 	sed "5a good sun" file	//第5行之后添加一行
 	sed "5i insert content" file	//第5行前面插入一行
 	sed "5,7d" file		//删除第5，7行
+	sed -n "5,$p" file		//打印第5行到文件尾；
 	sed -n "5,7p" file	//打印5，行
 	sed "s/aaa/bbb/g"	//把aaa换成bbb
 	sed "/aaa/d"		//匹配含有aaa的行，并把它删掉
