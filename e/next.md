@@ -1,0 +1,13 @@
+ipv6
+cmake
+mysql分表，反向通知
+redis
+http2.0
+手写字体识别；
+nginx配置https
+网络爬虫
+音频对话系统
+视频系统；
+人脸识别程序
+语音识别程序
+nlp
