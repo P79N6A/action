@@ -2,3 +2,5 @@ tcpdump -i any udp dst port 8080 //在所有网卡抓目标8080端口的包；
 tcpdump -XX -r saved_file //从已经抓取的包中查看包发送时间IP和包内容；
 
 tcpdump -i eth0 -X -v -s 1514 'udp[40:4] = 0x31323334'
+
+tcpdump -G 15 -W 1 -w myfile -i eth0 'port 8080'	//每过15秒生成一个文件，-G {sec} (rotate dump files every x seconds) and -W {count} (limit # of dump files) 
