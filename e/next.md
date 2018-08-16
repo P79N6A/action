@@ -2,6 +2,7 @@ ipv6
 cmake
 mysql分表，反向通知
 redis
+https://github.com/pangolulu/neural-network-from-scratch
 http2.0
 手写字体识别；
 nginx配置https
