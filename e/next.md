@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 facebook财报=》战略计划
 区块链公司与板块；
 区块链技术；
+=======
+栈溢出确定
+>>>>>>> f584cb0c41a9f69e89155d641b6fa144e319365b
 ipv6
 cmake
+linux各个信息查看
 mysql分表，反向通知
 redis
 https://github.com/pangolulu/neural-network-from-scratch
