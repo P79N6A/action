@@ -2,7 +2,7 @@
  * pp_socket.h
  *
  *  Created on: 2015��11��11��
- *      Author: focuszhang
+ *      Author: purperzhang
  */
 
 #ifndef APPS_APOLLO_CHAT_PP_COMMON_PP_SOCKET_H_
@@ -52,13 +52,17 @@ public:
 		memset(&_peer_addr,0,sizeof(_peer_addr));
 		memset(&_local_addr,0,sizeof(_local_addr));
 	}
-	~UDPSocket()
+//	~UDPSocket()
+//	{
+//	}
+	void release()
 	{
 #if linux
 		close(_socket_fd);
 #elif defined(WIN32) || defined(WIN64)
 		closesocket(_socket_fd);
 #endif
+		_socket_fd=-1;
 	}
 	bool init(bool nonblock=true,bool check_socket_buf=true)
 	{
@@ -389,7 +393,10 @@ public:
 		}
 		if((ret=::sendto(_socket_fd,buf,len,0,(struct sockaddr*)&_peer_addr,sizeof(_peer_addr)))!=len)
 		{
-			LOG_ERROR("sendto error:%d[%d]%s",ret,errno,strerror(errno));
+			unsigned int ip=_peer_addr.sin_addr.s_addr;
+			unsigned short port=_peer_addr.sin_port;
+			unsigned char*b=(unsigned char*)&ip;
+			LOG_ERROR("sendto error:%d[%d]%s (ip=%d.%d.%d.%d,port=%hu)",ret,errno,strerror(errno),b[0],b[1],b[2],b[3],htons(port));
 			return false;
 		}
 #elif defined(WIN32) || defined(WIN64)
