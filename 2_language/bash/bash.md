@@ -104,3 +104,5 @@ man bash 可以看到这样一段解释：The  Internal  Field  Separator  that 
 $
 ---------------------
 $'<something>' is for bash， It tell bash to process the \e as an escape sequence, and put an "escape" character in. Usually you see the simpler forms like $'\t' or $'\n' to get a tab or newline character passed to a command. 
+
+
