@@ -1,0 +1,1 @@
+读论文《Paxos Made Simple》
