@@ -40,3 +40,14 @@ nginx安装
         fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
         include        fastcgi_params;
     } 
+	
+
+开启浏览模式
+---------------------------------------------------------
+		location / {
+			#autoindex on;
+			autoindex_exact_size on;
+			autoindex_localtime on;
+	}
+	
+	
