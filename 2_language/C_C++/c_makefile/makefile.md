@@ -30,4 +30,12 @@ makefile中每一行前面不能有空格，如果要执行一个命令，必须
 
 换行符'\'后面不能有包括tab在内的任务字符，否则会导致当前行的下一行不被包含，即使换行符失去作用。
 
+a.out:main.cpp main.h
+	g++ -o a.out $@ $^
+如果按上面这样写会存在问题，当main.cpp编译出错时，main.h会被展开并生成gch文件或生成一个precompiled a.out,导致再次运行make不会再次抛出错误即提示均已经updated。故如果使用make来构建工程，最好不要把.h当成编译目标。如可以写成如下这样：
+a.out:main.cpp main.h
+	g++ -o a.out $@ $(filter %.cpp %.c %.cc,$^)
+或
+a.out:main.cpp main.h
+	g++ -o a.out $@ $(filter-out %.h,$^)
 
