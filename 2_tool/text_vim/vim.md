@@ -185,3 +185,6 @@ highlight Comment ctermfg=green guifg=green	把注释改成绿色，编辑vimrc
 其它
 ----------------------------
 	set autowrite	使用:!make或切换文件时可以自动保存已经编辑的文件；
+	
+	
+source $VIMRUNTIME/vimrc_example.vim	在vimrc中加入这一行可以使用默认的一些设置，如语法颜色高亮或记住上次位置等；
