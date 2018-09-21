@@ -8,7 +8,7 @@ ctags		支持变量定义跳转
 nerdtree	生成左目录文件树
 taglist		列出变量函数等
 tagbar		列出当前打开的文件的类变量方法等
-AutoComplPop NeoComplCache YouCompleteMe	代码补全
+AutoComplPop OmniCppComplete NeoComplCache YouCompleteMe	代码补全
 cscope		查找调用关系
 
 帮助
