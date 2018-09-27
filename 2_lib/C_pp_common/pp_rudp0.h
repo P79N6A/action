@@ -1,4 +1,4 @@
-//2016-01-04 by focuszhang
+//2016-01-04 by purperzhang
 
 
 #ifndef RELIABLE_UDP_RUDP0_H_

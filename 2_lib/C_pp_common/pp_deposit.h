@@ -1,4 +1,4 @@
-//2015-11-21 by focuszhang
+//2015-11-21 by purperzhang
 #ifndef DEPOSIT_H
 #define DEPOSIT_H
 #include <stdio.h>

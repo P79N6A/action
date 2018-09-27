@@ -85,11 +85,14 @@ if [ $1 == 'all' ];then
 	tearDown;
 else
 	setUp;
-	echo "====================================>$1/${#all[*]}"
-	cur_seq=$1;
+	for i in $@
+	do
+	echo "====================================>$i/${#all[*]}"
+	cur_seq=$i;
 	stepSetUp
-	${all[$1]}
+	${all[$i]}
 	stepTearDown
+	done
 	tearDown;
 fi
 

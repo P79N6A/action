@@ -1,7 +1,12 @@
+/*
+ * pp_time.h
+ *
+ *  Created on: 2015��11��11��
+ *      Author: purperzhang
+ */
 
-
-#ifndef PP_COMMON_PP_TIME_H_
-#define PP_COMMON_PP_TIME_H_
+#ifndef APPS_APOLLO_CHAT_PP_COMMON_PP_TIME_H_
+#define APPS_APOLLO_CHAT_PP_COMMON_PP_TIME_H_
 #ifdef linux
 #include <sys/time.h>
 #include <unistd.h>
@@ -90,4 +95,4 @@ namespace pp
 }
 #endif
 
-#endif /* PP_COMMON_PP_TIME_H_ */
+#endif /* APPS_APOLLO_CHAT_PP_COMMON_PP_TIME_H_ */
