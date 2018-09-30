@@ -12,6 +12,8 @@ MYSQL主要功能
 触发器
 事务
 集群备份
+mysql分区{关键字PARTITION}
+反向通知
 
 
 
