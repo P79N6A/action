@@ -1,11 +1,10 @@
-python神经网络；
+哈希算法（打乱取模基数顺序），专利
 市场营销与策划
 facebook财报=》战略计划
 区块链公司与板块；
 redis
 https://github.com/pangolulu/neural-network-from-scratch
 http2.0
-手写字体识别；
 nginx配置https
 网络爬虫
 音频对话系统
@@ -13,4 +12,3 @@ nginx配置https
 人脸识别程序
 语音识别程序
 nlp
-架构设计与一致性哈希
