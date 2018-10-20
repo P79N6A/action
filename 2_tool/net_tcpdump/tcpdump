@@ -4,3 +4,7 @@ tcpdump -XX -r saved_file //从已经抓取的包中查看包发送时间IP和包内容；
 tcpdump -i eth0 -X -v -s 1514 'udp[40:4] = 0x31323334'
 
 tcpdump -G 15 -W 1 -w myfile -i eth0 'port 8080'	//每过15秒生成一个文件，-G {sec} (rotate dump files every x seconds) and -W {count} (limit # of dump files) 
+
+
+tcpdump -nn	可以立即显示抓取信息
+tcpdump -X	显示包内容，虽然是每两个字节一个空格地显示，但却是按网络序严格排序，即最小网络序单位是字节；（与hexdump不同，hexdump默认输出格式的最小显示单位是short），tcpdump的输出类似hexdump -C

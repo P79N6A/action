@@ -1,13 +1,14 @@
 /*
- * focuszhang.h
+ * purperzhang.h
  *
  *  Created on: Aug 4, 2016
- *      Author: focuszhang
+ *      Author: purperzhang
  *      Mail:	jssjway@outlook.com //contact for bugs
  */
 
-#ifndef SRC_FOCUSZHANG_H_
-#define SRC_FOCUSZHANG_H_
+#ifndef ROOM_MANAGER_SRC_PURPERZHANG_H_
+#define ROOM_MANAGER_SRC_PURPERZHANG_H_
+#include<string>
 namespace pp
 {
 struct Link
@@ -86,6 +87,7 @@ public:
 	pp::Link	link_D;
 	unsigned long long	hash_int_key[3];
 	const char*		hash_string_key;
+	std::string		binary_key;
 public:
 	Brick()
 	:hash_string_key(0)
@@ -115,6 +117,7 @@ public:
 	unsigned long long offset();
 	virtual int size();
 	virtual Brick*	get(Brick*pb);
+	virtual Brick*	real_get(Brick*pb);
 	virtual void	add(Brick*pb);
 	virtual void	add_to_begin(Brick*pb);
 	virtual Brick*	prev(Brick*pb);
@@ -131,4 +134,4 @@ public:
 
 
 
-#endif /* SRC_FOCUSZHANG_H_ */
+#endif /* ROOM_MANAGER_SRC_PURPERZHANG_H_ */

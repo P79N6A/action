@@ -1,11 +1,11 @@
 /*
- * focuszhang.cpp
+ * purperzhang.cpp
  *
  *  Created on: Aug 4, 2016
- *      Author: focuszhang
+ *      Author: purperzhang
  *      Mail:	jssjway@outlook.com //contact for bugs
  */
-#include"focuszhang.h"
+#include"purperzhang.h"
 namespace pp
 {
 
@@ -34,6 +34,8 @@ void	Brick::just_self()
 	link_B.let_alone();
 	link_C.let_alone();
 	link_D.let_alone();
+
+	binary_key.clear();
 }
 Link*	Brick::link(unsigned long long oft)
 {
@@ -76,6 +78,32 @@ Brick*	BrickSet::get(Brick*pb)
 			this->_size--;
 			pl->let_alone();
 		}
+		return pb;
+	}
+}
+
+Brick*	BrickSet::real_get(Brick*pb)
+{
+	if(_leader.next==&_leader)
+	{
+		return 0;
+	}
+	if(pb==0)
+	{
+		pp::Link*pl=_leader.next;
+		pl->let_alone();
+		_size--;
+		return (Brick*)((char*)pl-_offset);
+	}
+	else
+	{
+		pp::Link*pl=(pp::Link*)((char*)pb+_offset);
+		if(pl->pObject!=this)
+		{
+			return 0;
+		}
+		this->_size--;
+		pl->let_alone();
 		return pb;
 	}
 }
