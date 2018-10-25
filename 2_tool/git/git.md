@@ -50,6 +50,7 @@ git标签
 git tag -l 列出所有tag
 git tag -a tagname	为当前代码添加标签
 git push origin tagname	把tag推送到远程
+git tag --delete		删除本地标签
 git push --delete tagname	删除远程标签
 
 
