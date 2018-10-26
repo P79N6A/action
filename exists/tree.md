@@ -43,3 +43,8 @@ Angular
 ---------------------
 DocFetcher    根据一个目录下的文本内容搜索文件
 spacesniffer    查看磁盘占用，删除不重要的文件
+
+linux工具
+---------------------
+nc	网络测试与发包工具
+ping telnet traceroute	网络测试工具
