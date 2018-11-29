@@ -3,6 +3,8 @@ tcpdump -XX -r saved_file //从已经抓取的包中查看包发送时间IP和包内容；
 
 tcpdump -i eth0 -X -v -s 1514 'udp[40:4] = 0x31323334'
 
+tcpdump -nn -i any -X ether[64:2]=0x2929	//按网卡特定偏移过滤，linux的tcpdump -X时不会打印第一行，故ether还需要算第一行的16个字节(即算偏移时tcpdump数出来的位置加16)。自测tcpdump抓IPV6的包使用udp的偏移不准确，使用ether的偏移准确，wireshark是两个均正确。
+
 tcpdump -G 15 -W 1 -w myfile -i eth0 'port 8080'	//每过15秒生成一个文件，-G {sec} (rotate dump files every x seconds) and -W {count} (limit # of dump files) 
 
 

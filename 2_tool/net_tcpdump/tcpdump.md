@@ -8,6 +8,15 @@ http://www.tcpdump.org/
 ----------------------------
 http://www.tcpdump.org/pcap/pcap.html
 http://www.kroosec.com/2012/10/a-look-at-pcap-file-format.html
+tcpdump文件格式中比如时间，每个包长度都是以网络序直接存储的。
+tcpdump文件格式IPV4｛
+	共有头：16+8字节
+	每个包格式｛
+		4字节时间戳；4字节微秒时间；4字节包内容长度；重复4字节包内容长度；
+		16位MAC地址信息；20字节IP头信息；8字节UDP头或20字节TCP头；
+		后面是数据包内容；
+	｝
+｝
 
 可以抓包时过滤或保存后多层过滤包。每次过滤后都可以使用-e,-X等选项来查看。
 

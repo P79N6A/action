@@ -21,7 +21,7 @@
 namespace pp
 {
 
-std::vector<pp::UA> getaddrs()
+static std::vector<pp::UA> getaddrs()
 {//bind all network card
 
 	std::vector<pp::UA> ips;

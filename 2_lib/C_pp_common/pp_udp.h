@@ -374,21 +374,26 @@ public:
 //#undef TMPCOMPARE
 //		return 0;
 //	}
-	bool operator<( UA&u2)
-	{
-//		return compare(u2)<0;
-		return this->get_binary()<u2.get_binary();
-	}
-	bool operator==( UA&u2)
-	{
-//		return compare(u2)==0;
-		return this->get_binary()==u2.get_binary();
-	}
-	bool operator>( UA&u2)
-	{
-//		return compare(u2)>0;
-		return this->get_binary()>u2.get_binary();
-	}
+
+
+
+	//the following function may have bugs in map
+//	bool operator<( UA&u2)
+//	{
+////		return compare(u2)<0;
+//		return this->get_binary()<u2.get_binary();
+//	}
+//	bool operator==( UA&u2)
+//	{
+////		return compare(u2)==0;
+//		return this->get_binary()==u2.get_binary();
+//	}
+//	bool operator>( UA&u2)
+//	{
+////		return compare(u2)>0;
+//		return this->get_binary()>u2.get_binary();
+//	}
+
 };
 
 class UDP
@@ -644,6 +649,7 @@ public:
 #ifdef SELF_DEFINE_LOG
 	#undef LOG_ERROR
 	#undef LOG_DEBUG
+	#undef SELF_DEFINE_LOG
 #endif
 
 
