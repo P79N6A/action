@@ -1,1 +1,0 @@
-https://www.speedguide.net/articles/mtu-what-difference-does-it-make-111

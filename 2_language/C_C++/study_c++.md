@@ -1,2 +1,0 @@
-
-* The files in the directory of "TEST_CODE" are written during my  leaning of c++ years ago, so some coding may not be approrite, some coment in the source files are written in chinese because of my poor English writing. I hope you can understand.
