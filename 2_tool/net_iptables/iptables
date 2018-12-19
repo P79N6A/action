@@ -1,5 +1,0 @@
-使用iptables修改来包地址：（--destination 本机IP是示例过滤方法；客户端出口IP是最后修改的IP）
-========
-iptables -t nat -A INPUT  --destination 本机IP -j SNAT --to-source 客户端出口IP
-[root@ovm-gysdq4x2 test]# iptables -t nat -A INPUT -s 103.7.29.7 -j SNAT --to-source 202.22.64.1（只有这一条就够了，包回来的时候会自动转换，不需要下面这一条）
-[root@ovm-gysdq4x2 test]# iptables -t nat -A OUTPUT -d 202.22.64.1 -j DNAT --to-destination 103.7.29.7
