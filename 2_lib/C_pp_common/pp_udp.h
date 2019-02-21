@@ -445,14 +445,16 @@ public:
 				return false;
 			}
 		}
-		const int LEN=16000000;
-		int optval=LEN;
+		const int RLEN=16000000;
+		const int SLEN=500000;//according to 1000 txqueuelen
+		int optval=SLEN;
 		socklen_t optlen=sizeof(optval);
 		if(setsockopt(_socket_fd,SOL_SOCKET,SO_SNDBUF,(const void*)&optval,optlen)==-1)
 		{
 			LOG_ERROR("setsockopt error[%d]%s",errno,strerror(errno));
 			return false;
 		}
+		optval=RLEN;
 		if(setsockopt(_socket_fd,SOL_SOCKET,SO_RCVBUF,(const void*)&optval,optlen)==-1)
 		{
 			LOG_ERROR("setsockopt error[%d]%s",errno,strerror(errno));
@@ -467,11 +469,11 @@ public:
 				return false;
 			}
 			LOG_DEBUG("UDPSOCKET_SNDBUF:%d",optval);
-			if(check_socket_buf && optval<LEN)
-			{
-				LOG_ERROR("socket send buf is too small:%d<%d",optval,LEN);
-				return false;
-			}
+//			if(check_socket_buf && optval!=SLEN)
+//			{
+//				LOG_ERROR("socket send buf is not expected:%d!=%d",optval,SLEN);
+//				return false;
+//			}
 
 			if(getsockopt(_socket_fd,SOL_SOCKET,SO_RCVBUF,(void*)&optval,&optlen)==-1)
 			{
@@ -479,9 +481,9 @@ public:
 				return false;
 			}
 			LOG_DEBUG("UDPSOCKET_RCVBUF:%d",optval);
-			if(check_socket_buf && optval<LEN)
+			if(check_socket_buf && optval<RLEN)
 			{
-				LOG_ERROR("socket recv buf is too small:%d<%d",optval,LEN);
+				LOG_ERROR("socket recv buf is too small:%d<%d",optval,RLEN);
 				return false;
 			}
 		}
@@ -510,14 +512,16 @@ public:
 	    	LOG_ERROR("ioctlsocket error[%d]",GetLastError());
 	    	return false;
 	    }
-		const int LEN=16000000;
-		int optval=LEN;
+		const int RLEN=16000000;
+		const int SLEN=500000;
+		int optval=SLEN;
 		int optlen=sizeof(optval);
 		if(::setsockopt(_socket_fd,SOL_SOCKET,SO_SNDBUF,(const char*)&optval,optlen)==-1)
 		{
 			LOG_ERROR("setsockopt error[%d]",GetLastError());
 			return false;
 		}
+		optval=RLEN;
 		if(::setsockopt(_socket_fd,SOL_SOCKET,SO_RCVBUF,(const char*)&optval,optlen)==-1)
 		{
 			LOG_ERROR("setsockopt error[%d]",GetLastError());
