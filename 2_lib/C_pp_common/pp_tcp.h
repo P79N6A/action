@@ -442,11 +442,11 @@ public:
 
 		int optval=LEN;
 		socklen_t optlen=sizeof(optval);
-		if(setsockopt(_socket_fd,SOL_SOCKET,SO_SNDBUF,(const void*)&optval,optlen)==-1)
-		{
-			LOG_ERROR("setsockopt error[%d]%s",errno,strerror(errno));
-			return false;
-		}
+//		if(setsockopt(_socket_fd,SOL_SOCKET,SO_SNDBUF,(const void*)&optval,optlen)==-1)
+//		{
+//			LOG_ERROR("setsockopt error[%d]%s",errno,strerror(errno));
+//			return false;
+//		}
 		if(setsockopt(_socket_fd,SOL_SOCKET,SO_RCVBUF,(const void*)&optval,optlen)==-1)
 		{
 			LOG_ERROR("setsockopt error[%d]%s",errno,strerror(errno));
@@ -455,17 +455,17 @@ public:
 		{
 			optval=0;
 			optlen=sizeof(optval);
-			if(getsockopt(_socket_fd,SOL_SOCKET,SO_SNDBUF,(void*)&optval,&optlen)==-1)
-			{
-				LOG_ERROR("getsockopt error[%d]%s",errno,strerror(errno));
-				return false;
-			}
-			LOG_DEBUG("TCPSOCKET_SNDBUF:%d",optval);
-			if(  optval<LEN)
-			{
-				LOG_ERROR("socket send buf is too small:%d<%d",optval,LEN);
-				return false;
-			}
+//			if(getsockopt(_socket_fd,SOL_SOCKET,SO_SNDBUF,(void*)&optval,&optlen)==-1)
+//			{
+//				LOG_ERROR("getsockopt error[%d]%s",errno,strerror(errno));
+//				return false;
+//			}
+//			LOG_DEBUG("TCPSOCKET_SNDBUF:%d",optval);
+//			if(  optval<LEN)
+//			{
+//				LOG_ERROR("socket send buf is too small:%d<%d",optval,LEN);
+//				return false;
+//			}
 
 			if(getsockopt(_socket_fd,SOL_SOCKET,SO_RCVBUF,(void*)&optval,&optlen)==-1)
 			{
@@ -505,6 +505,7 @@ struct Conn:public pp::Brick
 		int		fd;
 
 	};
+	bool	is_timeout;
 	Conn(unsigned i)
 	:index(i)
 	{}
@@ -516,6 +517,7 @@ struct Conn:public pp::Brick
 		udata.clear();
 		uptr=0;
 		//index can't be set, for it is used mainly for index;
+		is_timeout=false;
 	}
 };
 
@@ -723,6 +725,7 @@ public:
 				active.add(hat);
 				hat->udata.clear();
 				hat->uptr=0;
+				hat->is_timeout=false;
 				if(on_new_conn)
 					on_new_conn(hat);
 			}
@@ -763,16 +766,10 @@ public:
 	}
 	bool	send_data(uint64 conn_key,const char*buf,int len)
 	{
-		unsigned index=conn_key;
-		if(index>=conn_count)
+		Conn*conn=get_conn(conn_key);
+		if(!conn)
 		{
-			LOG_ERROR("index:%u out of bound",index);
-			return true;
-		}
-		Conn*conn=conn_array+index;
-		if(conn->key!=conn_key)
-		{
-			LOG_ERROR("key mismatch, the older connection may be already closed");
+			LOG_ERROR("get connection error");
 			return false;
 		}
 
@@ -785,8 +782,8 @@ public:
 				LOG_ERROR("send error[%d]%s",errno,strerror(errno));
 				if(errno!=EAGAIN && errno!=EWOULDBLOCK && errno!=EINTR)
 				{
-					LOG_ERROR("send to error,then close connection");
-					close_conn(conn);
+					LOG_ERROR("send to error,connection should be closed after send");
+//					close_conn(conn);//connection should be closed out of send, there may exists other logic before close
 					return false;
 				}
 			}
@@ -808,6 +805,29 @@ public:
 		conn->just_self();
 		unused.add(conn);
 	}
+	void close_conn(uint64 conn_key)
+	{
+		Conn*conn=get_conn(conn_key);
+		if(conn)
+			close_conn(conn);
+	}
+	Conn* get_conn(uint64 conn_key)
+	{
+		unsigned index=conn_key;
+		if(index>=conn_count)
+		{
+			LOG_ERROR("index:%u out of bound",index);
+			return 0;
+		}
+		Conn*conn=conn_array+index;
+		if(conn->key!=conn_key)
+		{
+			LOG_ERROR("key mismatch, the older connection may be already closed");
+			return 0;
+		}
+		return conn;
+
+	}
 private:
 	void deal_with_timeout(int CTS)
 	{
@@ -816,6 +836,7 @@ private:
 		{
 			if(abs(CTS-cn->last_active_time)>c_timeout)
 			{
+				cn->is_timeout=true;
 				close_conn(cn);
 			}
 			else
